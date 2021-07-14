@@ -104,10 +104,10 @@ class ModalBottomSheet<T> extends StatefulWidget {
   final BoxConstraints? constraints;
 
   @override
-  _ModalBottomSheetState<T> createState() => _ModalBottomSheetState<T>();
+  ModalBottomSheetState<T> createState() => ModalBottomSheetState<T>();
 }
 
-class _ModalBottomSheetState<T> extends State<ModalBottomSheet<T>> {
+class ModalBottomSheetState<T> extends State<ModalBottomSheet<T>> {
   GestureModalBottomSheetRoute<T> get route => widget.route;
 
   String _getRouteLabel(MaterialLocalizations localizations) {
@@ -136,20 +136,23 @@ class _ModalBottomSheetState<T> extends State<ModalBottomSheet<T>> {
       label: routeLabel,
       explicitChildNodes: true,
       child: ClipRect(
-        child: BottomSheet(
-          // animationController: route.controller,
-          onClosing: () {
-            if (route.isCurrent) {
-              Navigator.pop(context);
-            }
-          },
-          builder: route.builder,
-          backgroundColor: widget.backgroundColor,
-          elevation: widget.elevation,
-          shape: widget.shape,
-          clipBehavior: widget.clipBehavior,
-          constraints: widget.constraints,
-          enableDrag: false,
+        child: Container(
+          constraints: widget.constraints, // TODO: remove & use BottomSheet constraints
+          child: BottomSheet(
+            // animationController: route.controller,
+            onClosing: () {
+              if (route.isCurrent) {
+                Navigator.pop(context);
+              }
+            },
+            builder: route.builder,
+            backgroundColor: widget.backgroundColor,
+            elevation: widget.elevation,
+            shape: widget.shape,
+            clipBehavior: widget.clipBehavior,
+            // constraints: widget.constraints,
+            enableDrag: false,
+          ),
         ),
       ),
     );

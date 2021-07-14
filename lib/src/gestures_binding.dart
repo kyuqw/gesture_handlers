@@ -6,7 +6,7 @@ import 'package:flutter/widgets.dart';
 /// This flag only has an effect in debug mode.
 bool debugPrintPreventCancelPointer = false;
 
-/// [GestureBinding] implementation for prevent [RouteGestureHandler] active pointers canceling by [NavigatorState].
+/// [GestureBinding] implementation for prevent route [GestureHandler] active pointers canceling by [NavigatorState].
 ///
 /// [NavigatorState] cancel active pointers after navigation.
 mixin NavigatorGesturesBinding on GestureBinding {

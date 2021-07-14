@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:gesture_handlers/gesture_handlers.dart';
 
 void main() {
+  // debugPrintRecognizerCallbacksTrace = true;
   // debugPrintPreventCancelPointer = true;
+
+  /// [GestureBinding] implementation for prevent route [GestureHandler] active pointers canceling by [NavigatorState].
   NavigatorGesturesFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
@@ -40,7 +43,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
-  late final AnimationControllerSwipeHandler persistentBottomSwipeHandler;
+  late final AnimationController persistentBottomController;
   late final SwipeRouteHandler secondSwipeHandler;
   late final AnimationControllerGestureMixin horizontalSwipeHandler;
   late final GestureHandler handlerComposer;
@@ -51,15 +54,16 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   double get bottomSheetHeight => 0.8 * size.height;
 
-  bool get isPersistentBottomOpened => persistentBottomSwipeHandler.controller.value.round() > 0;
+  bool get isPersistentBottomOpened => persistentBottomController.value.round() > 0;
 
   @override
   void initState() {
     super.initState();
-    persistentBottomSwipeHandler = AnimationControllerSwipeHandler(
+    persistentBottomController = AnimationController(duration: const Duration(milliseconds: 300), vsync: this);
+    final persistentBottomSwipeHandler = AnimationControllerSwipeHandler(
       direction: DragDirection.vertical,
       reverse: true,
-      controller: AnimationController(duration: const Duration(milliseconds: 300), vsync: this),
+      controller: persistentBottomController,
       getChildSize: () => persistentBottomHeight,
     );
     secondSwipeHandler = SwipeRouteHandler(
@@ -99,9 +103,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    persistentBottomSwipeHandler.controller.dispose();
-    secondSwipeHandler.controller.dispose();
-    horizontalSwipeHandler.controller.dispose();
+    persistentBottomController.dispose();
+    handlerComposer.dispose();
     super.dispose();
   }
 
@@ -126,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   Widget buildPersistentBottom(BuildContext context) {
     return SizeTransition(
-      sizeFactor: persistentBottomSwipeHandler.controller,
+      sizeFactor: persistentBottomController,
       axisAlignment: -1.0,
       child: Card(
         margin: EdgeInsets.zero,

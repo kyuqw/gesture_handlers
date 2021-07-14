@@ -35,12 +35,12 @@ mixin NavigatorGesturesOneSequenceMixin on OneSequenceGestureRecognizer
 
 class RouteHorizontalDragGestureRecognizer extends HorizontalDragGestureRecognizer
     with NavigatorGesturesPreventingCancelingMixin, NavigatorGesturesOneSequenceMixin {
-  RouteHorizontalDragGestureRecognizer({Object? debugOwner, Set<PointerDeviceKind>? supportedDevices})
-      : super(debugOwner: debugOwner, supportedDevices: supportedDevices);
+  RouteHorizontalDragGestureRecognizer({Object? debugOwner, PointerDeviceKind? kind /*, Set<PointerDeviceKind>? supportedDevices */})
+      : super(debugOwner: debugOwner, kind: kind/*, supportedDevices: supportedDevices */);
 }
 
 class RouteVerticalDragGestureRecognizer extends VerticalDragGestureRecognizer
     with NavigatorGesturesPreventingCancelingMixin, NavigatorGesturesOneSequenceMixin {
-  RouteVerticalDragGestureRecognizer({Object? debugOwner, Set<PointerDeviceKind>? supportedDevices})
-      : super(debugOwner: debugOwner, supportedDevices: supportedDevices);
+  RouteVerticalDragGestureRecognizer({Object? debugOwner, PointerDeviceKind? kind /*, Set<PointerDeviceKind>? supportedDevices */})
+      : super(debugOwner: debugOwner, kind: kind/*, supportedDevices: supportedDevices */);
 }
