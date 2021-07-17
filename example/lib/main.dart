@@ -115,13 +115,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       handler: handlerComposer,
       child: Scaffold(
         appBar: AppBar(title: Text(widget.title)),
-        body: Stack(
-          children: [
-            Center(
-              child: Text('Swipe up \nSwipe left \nTap', textAlign: TextAlign.center, style: style),
-            ),
-          ],
-        ),
+        body: Center(child: Text('Swipe up \nSwipe left \nTap', textAlign: TextAlign.center, style: style)),
         bottomNavigationBar: buildPersistentBottom(context),
       ),
     );
@@ -136,13 +130,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         color: Colors.white12,
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(22.0))),
         child: Container(
+          alignment: Alignment.center,
           height: persistentBottomHeight,
           padding: const EdgeInsets.all(16.0),
-          child: Container(
-            alignment: Alignment.center,
-            child: const Text('swipe up to modal sheet'),
-          ),
-          // child: const Placeholder(),
+          child: const Text('swipe up to modal sheet'),
         ),
       ),
     );
@@ -161,16 +152,13 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   }
 
   ShowGestureRouteDelegate openRightSheet() {
-    return (handler) => Navigator.push(
+    return (gestureDelegate) => Navigator.push(
           context,
           MaterialGesturePageRoute(
-            gestureDelegate: handler,
+            gestureDelegate: gestureDelegate,
             builder: (ctx) => Scaffold(
               appBar: AppBar(title: const Text('Page Route')),
-              body: Container(
-                alignment: Alignment.center,
-                child: const Text('Material Gesture Page Route'),
-              ),
+              body: Center(child: const Text('Material Gesture Page Route')),
             ),
           ),
         );
