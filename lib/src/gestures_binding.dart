@@ -74,7 +74,7 @@ class NavigatorGesturesFlutterBinding extends WidgetsFlutterBinding with Navigat
   /// [NavigatorGesturesFlutterBinding].
   static WidgetsBinding ensureInitialized() {
     NavigatorGesturesFlutterBinding();
-    return WidgetsBinding.instance!;
+    return WidgetsBinding.instance;
   }
 }
 
