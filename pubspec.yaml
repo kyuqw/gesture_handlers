@@ -1,11 +1,11 @@
 name: gesture_handlers
 description: Gesture handlers Flutter project provide reusable gesture handler and interactive transitions between routes.
-version: 0.0.1+2
+version: 1.0.0+3
 homepage: 'https://github.com/kyuqw/gesture_handlers'
 
 environment:
-  sdk: ">=2.13.0 <3.0.0"
-  flutter: ">=1.17.0"
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.0.0"
 
 dependencies:
   flutter:
@@ -14,6 +14,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.2
 
 flutter:
