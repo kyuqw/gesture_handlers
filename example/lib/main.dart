@@ -7,6 +7,7 @@ void main() {
   // debugPrintPreventCancelPointer = true;
 
   /// [GestureBinding] implementation for prevent route [GestureHandler] active pointers canceling by [NavigatorState].
+  WidgetsFlutterBinding.ensureInitialized();
   NavigatorGesturesFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }

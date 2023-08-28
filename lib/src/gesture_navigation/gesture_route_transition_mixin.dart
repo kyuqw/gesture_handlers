@@ -71,7 +71,7 @@ mixin GestureRouteTransitionMixin<T> on ModalRoute<T> {
 
   Widget buildGestureModalBarrier(BuildContext context) {
     final gestureHandler = barrierGestureHandler;
-    Widget barrier = buildModalBarrier(context, barrierDismissible && gestureHandler == null);
+    Widget barrier = buildModalBarrier();
     if (gestureHandler != null) {
       barrier = Stack(
         children: [
@@ -88,7 +88,7 @@ mixin GestureRouteTransitionMixin<T> on ModalRoute<T> {
     return barrier;
   }
 
-  Widget buildModalBarrier(BuildContext context, bool barrierDismissible) {
+  Widget buildModalBarrier() {
     Widget barrier;
     if (barrierColor != null && barrierColor!.alpha != 0 && !offstage) {
       // changedInternalState is called if barrierColor or offstage updates
