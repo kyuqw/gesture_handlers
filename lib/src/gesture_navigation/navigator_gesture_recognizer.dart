@@ -5,7 +5,9 @@ import '../gestures_binding.dart';
 
 mixin NavigatorGesturesPreventingCancelingMixin on GestureRecognizer {
   static NavigatorGesturesBinding? getGestureBinding() {
-    if (GestureBinding.instance is NavigatorGesturesBinding) return GestureBinding.instance as NavigatorGesturesBinding;
+    if (GestureBinding.instance is NavigatorGesturesBinding) {
+      return GestureBinding.instance as NavigatorGesturesBinding;
+    }
     return null;
   }
 
@@ -33,14 +35,29 @@ mixin NavigatorGesturesOneSequenceMixin on OneSequenceGestureRecognizer
   }
 }
 
-class RouteHorizontalDragGestureRecognizer extends HorizontalDragGestureRecognizer
-    with NavigatorGesturesPreventingCancelingMixin, NavigatorGesturesOneSequenceMixin {
-  RouteHorizontalDragGestureRecognizer({Object? debugOwner, PointerDeviceKind? kind /*, Set<PointerDeviceKind>? supportedDevices */})
-      : super(debugOwner: debugOwner, kind: kind/*, supportedDevices: supportedDevices */);
+class RouteHorizontalDragGestureRecognizer
+    extends HorizontalDragGestureRecognizer
+    with
+        NavigatorGesturesPreventingCancelingMixin,
+        NavigatorGesturesOneSequenceMixin {
+  RouteHorizontalDragGestureRecognizer(
+      {Object? debugOwner,
+      PointerDeviceKind? kind /*, Set<PointerDeviceKind>? supportedDevices */
+      })
+      : super(
+          debugOwner: debugOwner, /*, supportedDevices: supportedDevices */
+        );
 }
 
 class RouteVerticalDragGestureRecognizer extends VerticalDragGestureRecognizer
-    with NavigatorGesturesPreventingCancelingMixin, NavigatorGesturesOneSequenceMixin {
-  RouteVerticalDragGestureRecognizer({Object? debugOwner, PointerDeviceKind? kind /*, Set<PointerDeviceKind>? supportedDevices */})
-      : super(debugOwner: debugOwner, kind: kind/*, supportedDevices: supportedDevices */);
+    with
+        NavigatorGesturesPreventingCancelingMixin,
+        NavigatorGesturesOneSequenceMixin {
+  RouteVerticalDragGestureRecognizer(
+      {Object? debugOwner,
+      PointerDeviceKind? kind /*, Set<PointerDeviceKind>? supportedDevices */
+      })
+      : super(
+          debugOwner: debugOwner, /*, supportedDevices: supportedDevices */
+        );
 }
